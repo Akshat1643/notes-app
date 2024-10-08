@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <script src="https://cdn.tailwindcss.com"></script> <!-- Tailwind CSS CDN -->
+</head>
+<body class="bg-gray-100 flex justify-center items-center min-h-screen">
+
+    <form action="/edit/<%=post._id%>" method="post" class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">Edit Post</h1>
+        
+        <!-- Title Field -->
+        <div class="mb-4">
+            <label for="title" class="block text-gray-700 text-sm font-bold mb-2">Post Title</label>
+            <textarea 
+                id="title" 
+                name="title" 
+                rows="1"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500" 
+                placeholder="Enter post title..."><%= post.title %></textarea>
+        </div>
+        
+        <!-- Content Field -->
+        <div class="mb-6">
+            <label for="content" class="block text-gray-700 text-sm font-bold mb-2">Post Content</label>
+            <textarea 
+                id="content" 
+                name="content" 
+                rows="5"
+                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-500" 
+                placeholder="Write your post content..."><%= post.content %></textarea>
+        </div>
+        
+        <!-- Submit Button -->
+        <button 
+            type="submit" 
+            class="w-full bg-indigo-500 text-white py-2 px-4 rounded-lg hover:bg-indigo-600 focus:outline-none focus:bg-indigo-600 transition duration-300 ease-in-out">
+            Save Changes
+        </button>
+    </form>
+
+</body>
+</html>

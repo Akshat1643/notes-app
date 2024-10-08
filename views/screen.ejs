@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Friends' Posts</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+    <!-- Main Container -->
+    <div class="container mx-auto p-8">
+        <!-- Header Section -->
+        <header class="flex justify-between items-center py-6 bg-white shadow-md rounded-lg px-8">
+            <h1 class="text-3xl font-bold">Friends' Posts</h1>
+            <a href="/logout" class="text-red-500 hover:text-red-700">Logout</a>
+        </header>
+
+        <!-- User Greeting -->
+        <section class="my-8 bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4">Hola, <%= user.name %>!</h2>
+            <a href="/AddFriend" class="text-yellow-500 hover:text-yellow-700">Add Friend</a>
+        </section>
+
+        <!-- Friends' Posts Section -->
+        <section class="bg-white shadow-md rounded-lg p-6">
+            <h3 class="text-xl font-semibold mb-4">Your Friends' Posts</h3>
+
+            <div class="space-y-6">
+                <!-- Iterate through each friend's post -->
+                <% friend.posts.forEach(function(post) { %>
+                <div class="border border-gray-300 rounded-lg p-4 bg-gray-50">
+                    <h4 class="font-semibold text-lg mb-2"><%= post.title %></h4>
+                    <p class="text-gray-700"><%= post.content %></p>
+                    <small><%= post.likes.length %> likes</small> <!-- Display like count -->
+                    
+                    <!-- Post Controls (Like/Unlike & View User) -->
+                    <div class="mt-2 flex space-x-4">
+                        <a href="/like/<%= post._id %>" class="text-blue-500 hover:text-blue-700">
+                            <%= post.likes.indexOf(user._id) === -1 ? "LIKE" : "UNLIKE" %>
+                        </a>
+                        <a href="/view-user/<%= post.user._id %>" class="text-yellow-500 hover:text-yellow-700">View User</a>
+                    </div>
+                </div>
+                <% }) %>
+
+                <!-- If there are no posts -->
+                <% if (friend.posts.length === 0) { %>
+                <div class="p-4 text-gray-600">
+                    <p>No posts from your friends yet!</p>
+                </div>
+                <% } %>
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
