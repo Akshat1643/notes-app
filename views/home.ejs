@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to PostApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        ul {
+            text-align: left;
+            margin-bottom: 30px;
+            color: #555;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background-color 0.3s ease;
+        }
+        .button.sign-in {
+            background-color: #007bff;
+            color: white;
+        }
+        .button.sign-in:hover {
+            background-color: #0056b3;
+        }
+        .button.sign-up {
+            background-color: #28a745;
+            color: white;
+        }
+        .button.sign-up:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Welcome to PostApp</h1>
+    <p>PostApp is your platform to share thoughts, connect with friends, and manage your posts seamlessly. Whether you want to share a story, update your followers, or chat with friends, PostApp has you covered.</p>
+    <ul>
+        <li><strong>Like:</strong> Engage with posts by liking them to show your support.</li>
+        <li><strong>Edit & Delete:</strong> Make changes to your posts or remove them anytime.</li>
+        <li><strong>Chat with Friends:</strong> Connect with your friends and chat in real-time.</li>
+        <li><strong>Follow Updates:</strong> Stay updated with the latest from your network.</li>
+    </ul>
+    <p>Join PostApp today and start sharing your moments!</p>
+    <div class="button-container">
+        <a href="/login"><button class="button sign-in">Sign In</button></a>
+        <a href="/create"><button class="button sign-up">Sign Up</button></a>
+    </div>
+</div>
+
+</body>
+</html>

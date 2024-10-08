@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socket.IO Room-based Chat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #chat {
+            background-color: #fff;
+            width: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        #messages {
+            height: 300px;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #e5ddd5;
+            display: flex;
+            flex-direction: column;
+        }
+        .message {
+            padding: 8px 12px;
+            margin-bottom: 8px;
+            max-width: 70%;
+            border-radius: 10px;
+        }
+        .message.sent {
+            background-color: #DCF8C6;
+            align-self: flex-end;
+        }
+        .message.received {
+            background-color: #fff;
+            align-self: flex-start;
+        }
+        #messageInput {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+        #sendBtn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        #sendBtn:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div id="chat">
+    <h3>Room: <span id="roomName"></span></h3>
+    <div id="messages"></div>
+    <input id="messageInput" type="text" placeholder="Type a message...">
+    <button id="sendBtn">Send</button>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    const socket = io();
+    console.log(socket)
+
+    const room = prompt('Enter room name:');  // Ask user to join a room
+    const currentUser = user.name;  // Get current user's name
+    document.getElementById('roomName').textContent = room;
+
+    // Join the specified room
+    socket.emit('joinRoom', { room, username: currentUser });
+
+    // Sending messages to the room
+    const sendBtn = document.getElementById('sendBtn');
+    sendBtn.addEventListener('click', () => {
+        const messageInput = document.getElementById('messageInput');
+        const message = messageInput.value;
+        socket.emit('sendMessage', { message, room, sender: currentUser });
+        messageInput.value = '';
+    });
+
+    // Receiving messages from the room
+    socket.on('message', (data) => {
+        const messagesDiv = document.getElementById('messages');
+        const newMessage = document.createElement('div');
+
+        // Add classes based on who sent the message
+        newMessage.classList.add('message');
+        if (data.sender === currentUser) {
+            newMessage.classList.add('sent');
+        } else {
+            newMessage.classList.add('received');
+        }
+
+        newMessage.textContent = `${data.sender}: ${data.message}`;
+        messagesDiv.appendChild(newMessage);
+
+        // Scroll to the bottom when a new message arrives
+        messagesDiv.scrollTop = messagesDiv.scrollHeight;
+    });
+</script>
+
+</body>
+</html>

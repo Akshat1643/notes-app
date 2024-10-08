@@ -49,6 +49,7 @@
 
 <div class="user-container">
     <h2>User List</h2>
+    <% friend.forEach(function(friend) { %> <!-- Loop through the array of friends -->
         <div class="user">
             <div>
                 <strong>Name:</strong> <%= friend.name %><br>
@@ -59,6 +60,7 @@
                 <button type="submit" class="add-friend-button">Add Friend</button>
             </form>
         </div>
+    <% }) %> <!-- End loop -->
 </div>
 
 </body>
